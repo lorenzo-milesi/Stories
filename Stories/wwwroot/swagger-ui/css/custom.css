@@ -1,0 +1,150 @@
+﻿:root {
+  --get: #3498db;
+  --post: #2ecc71;
+  --put: #f39c12;
+  --delete: #e74c3c;
+  --patch: #9b59b6;
+  --section: #bdc3c7;
+}
+
+.swagger-ui .opblock {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.swagger-ui .opblock .opblock-summary {
+  padding: 0;
+}
+
+.swagger-ui .opblock .opblock-summary-method {
+  border-radius: 0;
+  padding: 10px 15px;
+  min-width: 90px;
+}
+
+.swagger-ui .opblock-tag {
+  border: none;
+}
+
+.swagger-ui .opblock-tag:hover {
+  background: transparent;
+}
+
+.swagger-ui .opblock .opblock-section-header {
+  box-shadow: none;
+}
+
+.swagger-ui .opblock .tab-header .tab-item.active h4 span:after {
+  bottom: -16px;
+}
+
+/** Get */
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+  background: var(--get);
+}
+
+.swagger-ui .opblock.opblock-get {
+  background: transparent;
+  border-bottom: 1px solid var(--get);
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary {
+  border-color: var(--get);
+}
+
+.swagger-ui .opblock.opblock-get .opblock-section-header {
+  border-bottom: 1px solid var(--get);
+}
+
+.swagger-ui .opblock.opblock-get .tab-header .tab-item.active h4 span:after {
+  background: var(--get);
+}
+
+/** Post */
+.swagger-ui .opblock.opblock-post .opblock-summary-method {
+  background: var(--post);
+}
+
+.swagger-ui .opblock.opblock-post {
+  background: transparent;
+  border-bottom: 1px solid var(--post);
+}
+
+.swagger-ui .opblock.opblock-post .opblock-summary {
+  border-color: var(--post);
+}
+
+.swagger-ui .opblock.opblock-post .opblock-section-header {
+  border-bottom: 1px solid var(--post);
+}
+
+.swagger-ui .opblock.opblock-post .tab-header .tab-item.active h4 span:after {
+  background: var(--post);
+}
+
+/** Put */
+.swagger-ui .opblock.opblock-put .opblock-summary-method {
+  background: var(--put);
+}
+
+.swagger-ui .opblock.opblock-put {
+  background: transparent;
+  border-bottom: 1px solid var(--put);
+}
+
+.swagger-ui .opblock.opblock-put .opblock-summary {
+  border-color: var(--put);
+}
+
+.swagger-ui .opblock.opblock-put .opblock-section-header {
+  border-bottom: 1px solid var(--put);
+}
+
+.swagger-ui .opblock.opblock-put .tab-header .tab-item.active h4 span:after {
+  background: var(--put);
+}
+
+/** Patch */
+.swagger-ui .opblock.opblock-patch .opblock-summary-method {
+  background: var(--patch);
+}
+
+.swagger-ui .opblock.opblock-patch {
+  background: transparent;
+  border-bottom: 1px solid var(--patch);
+}
+
+.swagger-ui .opblock.opblock-patch .opblock-summary {
+  border-color: var(--patch);
+}
+
+.swagger-ui .opblock.opblock-patch .opblock-section-header {
+  border-bottom: 1px solid var(--patch);
+}
+
+.swagger-ui .opblock.opblock-patch .tab-header .tab-item.active h4 span:after {
+  background: var(--patch);
+}
+
+/** Delete */
+.swagger-ui .opblock.opblock-delete .opblock-summary-method {
+  background: var(--delete);
+}
+
+.swagger-ui .opblock.opblock-delete {
+  background: transparent;
+  border-bottom: 1px solid var(--delete);
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-summary {
+  border-color: var(--delete);
+}
+
+.swagger-ui .opblock.opblock-delete .opblock-section-header {
+  border-bottom: 1px solid var(--delete);
+}
+
+.swagger-ui .opblock.opblock-delete .tab-header .tab-item.active h4 span:after {
+  background: var(--delete);
+}
