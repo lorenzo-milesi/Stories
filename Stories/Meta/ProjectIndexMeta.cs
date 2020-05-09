@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace Stories.Dtos
+﻿namespace Stories.Meta
 {
     public class ProjectIndexMeta
     {

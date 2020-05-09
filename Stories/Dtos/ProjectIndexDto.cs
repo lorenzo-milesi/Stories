@@ -1,4 +1,6 @@
-﻿namespace Stories.Dtos
+﻿using Stories.Meta;
+
+namespace Stories.Dtos
 {
     public class ProjectIndexDto
     {
