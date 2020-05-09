@@ -9,7 +9,7 @@ using Stories.Data;
 namespace Stories.Migrations
 {
     [DbContext(typeof(StoriesContext))]
-    [Migration("20200509182016_CreateProjectsTable")]
+    [Migration("20200509233629_CreateProjectsTable")]
     partial class CreateProjectsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,7 +17,7 @@ namespace Stories.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "5.0.0-preview.3.20181.2")
+                .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Stories.Models.Project", b =>
