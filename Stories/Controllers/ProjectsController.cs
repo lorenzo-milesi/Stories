@@ -34,7 +34,7 @@ namespace Stories.Controllers
             return Ok(dto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "Show")]
         [ProducesResponseType(typeof(ProjectShowDto), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public ActionResult<ProjectShowDto> Show(int id)
@@ -59,7 +59,10 @@ namespace Stories.Controllers
             _repository.Create(project);
             _repository.Store();
 
-            return Ok(new ProjectShowDto(_mapper.Map<ProjectData>(project)));
+            return CreatedAtRoute(
+                nameof(Show),
+                new { Id = project.Id },
+                new ProjectShowDto(_mapper.Map<ProjectData>(project)));
         }
     }
 }
