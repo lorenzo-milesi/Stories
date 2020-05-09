@@ -11,6 +11,7 @@ namespace Stories.Profiles
         {
             CreateMap<Project, ProjectData>();
             CreateMap<ProjectCreateDto, Project>();
+            CreateMap<ProjectUpdateDto, Project>();
         }
     }
 }

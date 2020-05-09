@@ -64,5 +64,24 @@ namespace Stories.Controllers
                 new { Id = project.Id },
                 new ProjectShowDto(_mapper.Map<ProjectData>(project)));
         }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(NoContentResult), 204)]
+        [ProducesResponseType(typeof(NotFoundResult), 404)]
+        public ActionResult Update(int id, ProjectUpdateDto projectUpdateDto)
+        {
+            Project project = _repository.Show(id);
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(projectUpdateDto, project);
+            _repository.Update(project);
+            _repository.Store();
+
+            return NoContent();
+        }
     }
 }

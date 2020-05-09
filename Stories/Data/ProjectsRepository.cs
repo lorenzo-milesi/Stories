@@ -49,7 +49,6 @@ namespace Stories.Data
 
         public void Update(Project project)
         {
-            throw new System.NotImplementedException();
         }
 
         public void Delete(Project project)
