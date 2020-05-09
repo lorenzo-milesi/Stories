@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Stories.Models;
 
 namespace Stories.Data
 {
-    public class PsqlProjectsRepository : IProjectRepository
+    public class ProjectsRepository : IProjectRepository
     {
         private readonly StoriesContext _context;
 
-        public PsqlProjectsRepository(StoriesContext context)
+        public ProjectsRepository(StoriesContext context)
         {
             _context = context;
         }
@@ -38,7 +39,12 @@ namespace Stories.Data
 
         public void Create(Project project)
         {
-            throw new System.NotImplementedException();
+            if (project == null)
+            {
+                throw new ArgumentNullException(nameof(project));
+            }
+
+            _context.Projects.Add(project);
         }
 
         public void Update(Project project)

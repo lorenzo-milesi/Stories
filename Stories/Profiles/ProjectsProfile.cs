@@ -10,6 +10,7 @@ namespace Stories.Profiles
         public ProjectsProfile()
         {
             CreateMap<Project, ProjectData>();
+            CreateMap<ProjectCreateDto, Project>();
         }
     }
 }

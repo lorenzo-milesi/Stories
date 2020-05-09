@@ -39,7 +39,7 @@ namespace Stories
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
-            services.AddScoped<IProjectRepository, PsqlProjectsRepository>();
+            services.AddScoped<IProjectRepository, ProjectsRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

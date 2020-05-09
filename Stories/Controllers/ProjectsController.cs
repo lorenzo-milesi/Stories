@@ -50,5 +50,16 @@ namespace Stories.Controllers
 
             return Ok(new ProjectShowDto(data));
         }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(ProjectCreateDto), 201)]
+        public ActionResult<Project> Create(ProjectCreateDto projectCreateDto)
+        {
+            Project project = _mapper.Map<Project>(projectCreateDto);
+            _repository.Create(project);
+            _repository.Store();
+
+            return Ok(new ProjectShowDto(_mapper.Map<ProjectData>(project)));
+        }
     }
 }
