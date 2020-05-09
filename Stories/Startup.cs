@@ -30,7 +30,10 @@ namespace Stories
             services.AddDbContext<StoriesContext>(opt => opt.UseNpgsql
                 (Configuration.GetConnectionString("StoriesConnection"))
             );
+
             services.AddControllers();
+
+            services.AddScoped<IProjectRepository, PSQLProjectsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
