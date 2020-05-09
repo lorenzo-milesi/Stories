@@ -1,19 +1,19 @@
-﻿using Stories.Meta;
+﻿using System.Collections.Generic;
+using Stories.Meta;
 
 namespace Stories.Dtos
 {
     public class ProjectIndexDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public IEnumerable<ProjectData> Data { get; set; }
+        public ProjectIndexMeta Meta { get; set; }
 
-        public ProjectIndexMeta Meta
+        public ProjectIndexDto(IEnumerable<ProjectData> data, ProjectIndexMeta meta)
         {
-            get
-            {
-                ProjectIndexMeta meta = new ProjectIndexMeta { Id = Id };
-                return meta;
-            }
+            Data = data;
+            Meta = meta;
         }
+
+
     }
 }

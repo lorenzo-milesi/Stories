@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Stories.Models;
 
 namespace Stories.Data
 {
-    public class PSQLProjectsRepository : IProjectRepository
+    public class PsqlProjectsRepository : IProjectRepository
     {
         private readonly StoriesContext _context;
 
-        public PSQLProjectsRepository(StoriesContext context)
+        public PsqlProjectsRepository(StoriesContext context)
         {
             _context = context;
         }
@@ -18,14 +19,21 @@ namespace Stories.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public IEnumerable<Project> Index()
+        public int Count()
         {
-            return _context.Projects.ToList();
+            return _context.Projects.Count();
+        }
+
+        public IEnumerable<Project> Index(int offset, int limit)
+        {
+            string sql = $"SELECT \"Id\", \"Name\" FROM public.\"Projects\" LIMIT {limit} OFFSET {offset}";
+
+            return _context.Projects.FromSqlRaw(sql).ToList();
         }
 
         public Project Show(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Projects.FirstOrDefault(p => p.Id == id);
         }
 
         public void Create(Project project)

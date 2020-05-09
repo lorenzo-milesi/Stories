@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Stories.Dtos;
+using Stories.Meta;
 using Stories.Models;
 
 namespace Stories.Profiles
@@ -8,7 +9,7 @@ namespace Stories.Profiles
     {
         public ProjectsProfile()
         {
-            CreateMap<Project, ProjectIndexDto>();
+            CreateMap<Project, ProjectData>();
         }
     }
 }
