@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Stories.Data;
 using Stories.Dtos;
@@ -78,6 +79,32 @@ namespace Stories.Controllers
             }
 
             _mapper.Map(projectUpdateDto, project);
+            _repository.Update(project);
+            _repository.Store();
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(typeof(NoContentResult), 204)]
+        [ProducesResponseType(typeof(NotFoundResult), 404)]
+        public ActionResult Patch(int id, JsonPatchDocument<ProjectUpdateDto> document)
+        {
+            Project project = _repository.Show(id);
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            ProjectUpdateDto projectToPatch = _mapper.Map<ProjectUpdateDto>(project);
+            document.ApplyTo(projectToPatch, ModelState);
+            if (!TryValidateModel(projectToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(projectToPatch, project);
             _repository.Update(project);
             _repository.Store();
 
