@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stories.Data;
+using Stories.Dtos;
 using Stories.Models;
 
 namespace Stories.Controllers
@@ -10,16 +12,20 @@ namespace Stories.Controllers
     public class ProjectsController : ControllerBase
     {
         private readonly IProjectRepository _repository;
+        private readonly IMapper _mapper;
 
-        public ProjectsController(IProjectRepository repository)
+        public ProjectsController(IProjectRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Project>> Index()
+        public ActionResult<IEnumerable<ProjectIndexDto>> Index()
         {
-            return Ok(_repository.Index());
+            IEnumerable<Project> projectsCollection = _repository.Index();
+
+            return Ok(_mapper.Map<IEnumerable<ProjectIndexDto>>(projectsCollection));
         }
     }
 }
