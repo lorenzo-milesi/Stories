@@ -53,7 +53,12 @@ namespace Stories.Data
 
         public void Delete(Project project)
         {
-            throw new System.NotImplementedException();
+            if (project == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            _context.Projects.Remove(project);
         }
     }
 }

@@ -110,5 +110,23 @@ namespace Stories.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(NoContentResult), 204)]
+        [ProducesResponseType(typeof(NotFoundResult), 404)]
+        public ActionResult Delete(int id)
+        {
+            Project project = _repository.Show(id);
+
+            if (project == null)
+            {
+                return NotFound();
+            }
+
+            _repository.Delete(project);
+            _repository.Store();
+
+            return NoContent();
+        }
     }
 }
