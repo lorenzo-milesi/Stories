@@ -1,0 +1,15 @@
+﻿version: '3.1'
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: stories
+      POSTGRES_PASSWORD: secret
+    ports:
+      - 3210:5432
+    volumes:
+      - db:/var/lib/postgresql
+
+volumes:
+  db:
