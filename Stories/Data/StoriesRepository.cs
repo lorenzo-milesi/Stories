@@ -3,11 +3,10 @@ using Stories.Models;
 
 namespace Stories.Data
 {
-    public class StoriesRepository : IStoriesRepository
+    public class StoriesRepository : Repository, IStoriesRepository
     {
-        public bool Store()
+        public StoriesRepository(StoriesContext context) : base(context)
         {
-            throw new System.NotImplementedException();
         }
 
         public int Count()

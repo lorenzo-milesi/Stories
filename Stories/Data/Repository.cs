@@ -1,4 +1,6 @@
-﻿namespace Stories.Data
+﻿using Stories.Models;
+
+namespace Stories.Data
 {
     public abstract class Repository
     {
@@ -7,6 +9,11 @@
         protected Repository(StoriesContext context)
         {
             Context = context;
+        }
+
+        public bool Store()
+        {
+            return (Context.SaveChanges() >= 0);
         }
     }
 }

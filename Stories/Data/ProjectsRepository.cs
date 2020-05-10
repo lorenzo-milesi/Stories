@@ -12,11 +12,6 @@ namespace Stories.Data
         {
         }
 
-        public bool Store()
-        {
-            return (Context.SaveChanges() >= 0);
-        }
-
         public int Count()
         {
             return Context.Projects.Count();
