@@ -41,6 +41,7 @@ namespace Stories
             });
 
             services.AddScoped<IRepository<Project>, Repository<Project>>();
+            services.AddScoped<IRepository<Story>, StoriesRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

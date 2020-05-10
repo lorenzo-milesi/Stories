@@ -1,6 +1,6 @@
 ﻿namespace Stories.Meta
 {
-    public class ProjectData : ModelData
+    public class ProjectData
     {
         public int Id { get; set; }
         public string Name { get; set; }

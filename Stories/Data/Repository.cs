@@ -29,7 +29,7 @@ namespace Stories.Data
 
         public IEnumerable<T> Index(int offset, int limit)
         {
-            return Table.ToList();
+            return Table.Skip(offset).Take(limit).ToList();
         }
 
         public T Find(int id)

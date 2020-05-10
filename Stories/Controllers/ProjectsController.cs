@@ -23,22 +23,23 @@ namespace Stories.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<IndexDto>> Index(int page = 1, int limit = 100)
+        public ActionResult<IndexDto> Index(int page = 1, int limit = 100)
         {
             int offset = (page - 1) * limit;
             IEnumerable<Project> projectsCollection = _repository.Index(offset, limit);
-            IEnumerable<ProjectData> data = _mapper.Map<IEnumerable<ProjectData>>(projectsCollection);
+
             int count = _repository.Count();
-            IndexMeta meta = new IndexMeta { Page = page, Limit = limit, Count = count, Resource = "Projects"};
+            IndexMeta meta = new IndexMeta { Page = page, Limit = limit, Count = count, Resource = "Projects" };
+            IEnumerable<ProjectData> data = _mapper.Map<IEnumerable<ProjectData>>(projectsCollection);
             IndexDto dto = new IndexDto(data, meta);
 
             return Ok(dto);
         }
 
-        [HttpGet("{id}", Name = "Show")]
-        [ProducesResponseType(typeof(ProjectShowDto), 200)]
+        [HttpGet("{id}", Name = "ShowProject")]
+        [ProducesResponseType(typeof(ShowDto<>), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public ActionResult<ProjectShowDto> Show(int id)
+        public ActionResult<ShowDto<ProjectData>> Show(int id)
         {
             Project project = _repository.Find(id);
 
@@ -49,7 +50,7 @@ namespace Stories.Controllers
 
             ProjectData data = _mapper.Map<ProjectData>(project);
 
-            return Ok(new ProjectShowDto(data));
+            return Ok(new ShowDto<ProjectData>(data));
         }
 
         [HttpPost]
@@ -63,7 +64,7 @@ namespace Stories.Controllers
             return CreatedAtRoute(
                 nameof(Show),
                 new { Id = project.Id },
-                new ProjectShowDto(_mapper.Map<ProjectData>(project)));
+                new ShowDto<ProjectData>(_mapper.Map<ProjectData>(project)));
         }
 
         [HttpPut("{id}")]
