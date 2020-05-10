@@ -6,35 +6,32 @@ using Stories.Models;
 
 namespace Stories.Data
 {
-    public class ProjectsRepository : IProjectRepository
+    public class ProjectsRepository : Repository, IProjectRepository
     {
-        private readonly StoriesContext _context;
-
-        public ProjectsRepository(StoriesContext context)
+        public ProjectsRepository(StoriesContext context) : base(context)
         {
-            _context = context;
         }
 
         public bool Store()
         {
-            return (_context.SaveChanges() >= 0);
+            return (Context.SaveChanges() >= 0);
         }
 
         public int Count()
         {
-            return _context.Projects.Count();
+            return Context.Projects.Count();
         }
 
         public IEnumerable<Project> Index(int offset, int limit)
         {
             string sql = $"SELECT \"Id\", \"Name\" FROM public.\"Projects\" LIMIT {limit} OFFSET {offset}";
 
-            return _context.Projects.FromSqlRaw(sql).ToList();
+            return Context.Projects.FromSqlRaw(sql).ToList();
         }
 
         public Project Show(int id)
         {
-            return _context.Projects.FirstOrDefault(p => p.Id == id);
+            return Context.Projects.FirstOrDefault(p => p.Id == id);
         }
 
         public void Create(Project project)
@@ -44,7 +41,7 @@ namespace Stories.Data
                 throw new ArgumentNullException(nameof(project));
             }
 
-            _context.Projects.Add(project);
+            Context.Projects.Add(project);
         }
 
         public void Update(Project project)
@@ -58,7 +55,8 @@ namespace Stories.Data
                 throw new ArgumentNullException();
             }
 
-            _context.Projects.Remove(project);
+            Context.Projects.Remove(project);
         }
+
     }
 }
