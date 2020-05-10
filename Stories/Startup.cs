@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using Stories.Data;
+using Stories.Models;
 
 namespace Stories
 {
@@ -39,7 +40,7 @@ namespace Stories
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
-            services.AddScoped<IProjectRepository, ProjectsRepository>();
+            services.AddScoped<IRepository<Project>, Repository<Project>>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

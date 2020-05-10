@@ -11,26 +11,26 @@ namespace Stories.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectsController : ControllerBase
+    public class ProjectsController : ControllerBase, IController
     {
-        private readonly IProjectRepository _repository;
+        private readonly IRepository<Project> _repository;
         private readonly IMapper _mapper;
 
-        public ProjectsController(IProjectRepository repository, IMapper mapper)
+        public ProjectsController(IRepository<Project> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProjectIndexDto>> Index(int page = 1, int limit = 100)
+        public ActionResult<IEnumerable<IndexDto>> Index(int page = 1, int limit = 100)
         {
             int offset = (page - 1) * limit;
             IEnumerable<Project> projectsCollection = _repository.Index(offset, limit);
             IEnumerable<ProjectData> data = _mapper.Map<IEnumerable<ProjectData>>(projectsCollection);
             int count = _repository.Count();
-            ProjectIndexMeta meta = new ProjectIndexMeta { Page = page, Limit = limit, Count = count };
-            ProjectIndexDto dto = new ProjectIndexDto(data, meta);
+            IndexMeta meta = new IndexMeta { Page = page, Limit = limit, Count = count, Resource = "Projects"};
+            IndexDto dto = new IndexDto(data, meta);
 
             return Ok(dto);
         }
@@ -40,7 +40,7 @@ namespace Stories.Controllers
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public ActionResult<ProjectShowDto> Show(int id)
         {
-            Project project = _repository.Show(id);
+            Project project = _repository.Find(id);
 
             if (project == null)
             {
@@ -57,7 +57,7 @@ namespace Stories.Controllers
         public ActionResult<Project> Create(ProjectCreateDto projectCreateDto)
         {
             Project project = _mapper.Map<Project>(projectCreateDto);
-            _repository.Create(project);
+            _repository.Insert(project);
             _repository.Store();
 
             return CreatedAtRoute(
@@ -71,7 +71,7 @@ namespace Stories.Controllers
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public ActionResult Update(int id, ProjectUpdateDto projectUpdateDto)
         {
-            Project project = _repository.Show(id);
+            Project project = _repository.Find(id);
 
             if (project == null)
             {
@@ -90,7 +90,7 @@ namespace Stories.Controllers
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public ActionResult Patch(int id, JsonPatchDocument<ProjectUpdateDto> document)
         {
-            Project project = _repository.Show(id);
+            Project project = _repository.Find(id);
 
             if (project == null)
             {
@@ -116,7 +116,7 @@ namespace Stories.Controllers
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public ActionResult Delete(int id)
         {
-            Project project = _repository.Show(id);
+            Project project = _repository.Find(id);
 
             if (project == null)
             {
