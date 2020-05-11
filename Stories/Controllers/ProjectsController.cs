@@ -37,9 +37,9 @@ namespace Stories.Controllers
         }
 
         [HttpGet("{id}", Name = "ShowProject")]
-        [ProducesResponseType(typeof(ShowDto<>), 200)]
+        [ProducesResponseType(typeof(ShowDto), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public ActionResult<ShowDto<ProjectData>> Show(int id)
+        public ActionResult<ShowDto> Show(int id)
         {
             Project project = _repository.Find(id);
 
@@ -50,7 +50,7 @@ namespace Stories.Controllers
 
             ProjectData data = _mapper.Map<ProjectData>(project);
 
-            return Ok(new ShowDto<ProjectData>(data));
+            return Ok(new ShowDto(data));
         }
 
         [HttpPost]
@@ -64,7 +64,7 @@ namespace Stories.Controllers
             return CreatedAtRoute(
                 nameof(Show),
                 new { Id = project.Id },
-                new ShowDto<ProjectData>(_mapper.Map<ProjectData>(project)));
+                new ShowDto(_mapper.Map<ProjectData>(project)));
         }
 
         [HttpPut("{id}")]

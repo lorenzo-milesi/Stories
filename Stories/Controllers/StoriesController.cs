@@ -36,9 +36,9 @@ namespace Stories.Controllers
         }
 
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ShowDto<>), 200)]
+        [ProducesResponseType(typeof(ShowDto), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public ActionResult<ShowDto<StoryData>> Show(int id)
+        public ActionResult<ShowDto> Show(int id)
         {
             Story story = _repository.Find(id);
 
@@ -49,7 +49,7 @@ namespace Stories.Controllers
 
             StoryData data = _mapper.Map<StoryData>(story);
 
-            return Ok(new ShowDto<StoryData>(data));
+            return Ok(new ShowDto(data));
         }
     }
 }

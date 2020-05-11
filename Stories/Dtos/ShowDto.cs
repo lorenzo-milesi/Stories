@@ -2,11 +2,11 @@
 
 namespace Stories.Dtos
 {
-    public class ShowDto<TData> where TData : class
+    public class ShowDto
     {
-        public TData Data { get; set; }
+        public IModelData Data { get; set; }
 
-        public ShowDto(TData data)
+        public ShowDto(IModelData data)
         {
             Data = data;
         }

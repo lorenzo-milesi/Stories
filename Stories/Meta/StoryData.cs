@@ -3,7 +3,7 @@ using Stories.Models;
 
 namespace Stories.Meta
 {
-    public class StoryData
+    public class StoryData : IModelData
     {
         public int Id { get; set; }
         public string Title { get; set; }
