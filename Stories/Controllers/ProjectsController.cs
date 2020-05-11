@@ -55,14 +55,14 @@ namespace Stories.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ProjectCreateDto), 201)]
-        public ActionResult<Project> Create(ProjectCreateDto projectCreateDto)
+        public ActionResult Create(ProjectCreateDto projectCreateDto)
         {
             Project project = _mapper.Map<Project>(projectCreateDto);
             _repository.Insert(project);
             _repository.Store();
 
             return CreatedAtRoute(
-                nameof(Show),
+                "ShowProject",
                 new { Id = project.Id },
                 new ShowDto(_mapper.Map<ProjectData>(project)));
         }

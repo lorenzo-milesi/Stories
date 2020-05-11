@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Stories.Dtos;
 using Stories.Meta;
 using Stories.Models;
 
@@ -10,6 +11,8 @@ namespace Stories.Profiles
         {
             CreateMap<Story, StoryData>();
             CreateMap<Project, StoryData>();
+            CreateMap<StoryCreateDto, Story>();
+            CreateMap<Story, StoryCreateDto>();
         }
     }
 }

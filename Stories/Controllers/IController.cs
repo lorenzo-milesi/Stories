@@ -9,5 +9,6 @@ namespace Stories.Controllers
     {
         public ActionResult<IndexDto> Index(int page = 1, int limit = 100);
         public ActionResult<ShowDto> Show(int id);
+        public ActionResult Delete(int id);
     }
 }
