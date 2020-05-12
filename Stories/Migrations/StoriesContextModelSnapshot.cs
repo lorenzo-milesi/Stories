@@ -18,6 +18,21 @@ namespace Stories.Migrations
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("Stories.Models.BusinessRule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BusinessRules");
+                });
+
             modelBuilder.Entity("Stories.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -45,7 +60,7 @@ namespace Stories.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("State");
+                    b.ToTable("States");
                 });
 
             modelBuilder.Entity("Stories.Models.Story", b =>

@@ -8,7 +8,8 @@ namespace Stories.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Type> Types { get; set; }
-        public DbSet<State> State { get; set; }
+        public DbSet<State> States { get; set; }
+        public DbSet<BusinessRule> BusinessRules { get; set; }
 
         public StoriesContext(DbContextOptions<StoriesContext> options) : base(options)
         {
