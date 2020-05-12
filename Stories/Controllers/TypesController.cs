@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Stories.Data;
@@ -9,11 +8,11 @@ using Stories.Models;
 
 namespace Stories.Controllers
 {
-    public class ProjectsController : AController<Project, ProjectData, ProjectCreateDto, ProjectUpdateDto>
+    public class TypesController : AController<Type, TypeData, TypeCreateDto, TypeCreateDto>
     {
-        public ProjectsController(IRepository<Project> repository, IMapper mapper) : base(repository, mapper)
+        public TypesController(IRepository<Type> repository, IMapper mapper) : base(repository, mapper)
         {
-            Resource = "Projects";
+            Resource = "Types";
         }
 
         [HttpGet]
@@ -22,7 +21,7 @@ namespace Stories.Controllers
             return base.Index(page, limit);
         }
 
-        [HttpGet("{id}", Name = "ShowProject")]
+        [HttpGet("{id}", Name = "ShowType")]
         [ProducesResponseType(typeof(ShowDto), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
         public new ActionResult<ShowDto> Show(int id)
@@ -31,21 +30,21 @@ namespace Stories.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ProjectCreateDto), 201)]
-        public new ActionResult Create(ProjectCreateDto createDto)
+        [ProducesResponseType(typeof(TypeCreateDto), 201)]
+        public new ActionResult Create(TypeCreateDto createDto)
         {
-            Project model = base.Create(createDto);
+            Type model = base.Create(createDto);
 
             return CreatedAtRoute(
-                "ShowProject",
+                "ShowType",
                 new { Id = model.Id },
-                new ShowDto(Mapper.Map<ProjectData>(model)));
+                new ShowDto(Mapper.Map<TypeData>(model)));
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(NoContentResult), 204)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public new ActionResult Update(int id, ProjectUpdateDto updateDto)
+        public new ActionResult Update(int id, TypeCreateDto updateDto)
         {
             return base.Update(id, updateDto);
         }
@@ -53,7 +52,7 @@ namespace Stories.Controllers
         [HttpPatch("{id}")]
         [ProducesResponseType(typeof(NoContentResult), 204)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public new ActionResult Patch(int id, JsonPatchDocument<ProjectUpdateDto> document)
+        public new ActionResult Patch(int id, JsonPatchDocument<TypeCreateDto> document)
         {
             return base.Patch(id, document);
         }

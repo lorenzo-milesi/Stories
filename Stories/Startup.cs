@@ -1,21 +1,16 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
 using Stories.Data;
 using Stories.Models;
+using Type = Stories.Models.Type;
 
 namespace Stories
 {
@@ -41,6 +36,7 @@ namespace Stories
             });
 
             services.AddScoped<IRepository<Project>, Repository<Project>>();
+            services.AddScoped<IRepository<Type>, Repository<Type>>();
             services.AddScoped<IRepository<Story>, StoriesRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

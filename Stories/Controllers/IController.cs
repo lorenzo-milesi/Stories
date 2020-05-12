@@ -7,8 +7,8 @@ namespace Stories.Controllers
 {
     public interface IController
     {
-        public ActionResult<IndexDto> Index(int page = 1, int limit = 100);
-        public ActionResult<ShowDto> Show(int id);
-        public ActionResult Delete(int id);
+        protected ActionResult<IndexDto> Index(int page = 1, int limit = 100);
+        protected ActionResult<ShowDto> Show(int id);
+        protected ActionResult Delete(int id);
     }
 }
