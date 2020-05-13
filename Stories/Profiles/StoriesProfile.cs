@@ -16,6 +16,7 @@ namespace Stories.Profiles
             CreateMap<StoryCreateDto, Story>();
             CreateMap<Story, StoryCreateDto>();
             CreateMap<Story, StoryInBusinessRuleData>();
+            CreateMap<Story, StoryInProjectData>();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Stories
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
-            services.AddScoped<IRepository<Project>, Repository<Project>>();
+            services.AddScoped<IRepository<Project>, ProjectsRepository>();
             services.AddScoped<IRepository<Type>, Repository<Type>>();
             services.AddScoped<IRepository<State>, Repository<State>>();
             services.AddScoped<IRepository<BusinessRule>, BusinessRulesRepository>();
