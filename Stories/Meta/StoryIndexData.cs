@@ -1,4 +1,5 @@
-﻿using Stories.Models;
+﻿using Stories.Meta.Relationships;
+using Stories.Models;
 
 namespace Stories.Meta
 {
@@ -8,6 +9,6 @@ namespace Stories.Meta
         public string Title { get; set; }
         public string Description { get; set; }
         public string Data { get; set; }
-        public Project Project { get; set; }
+        public ProjectInStoryData Project { get; set; }
     }
 }

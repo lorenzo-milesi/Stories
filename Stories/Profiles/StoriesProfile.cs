@@ -12,7 +12,7 @@ namespace Stories.Profiles
         {
             CreateMap<Story, StoryData>();
             CreateMap<Story, StoryIndexData>();
-            CreateMap<Project, StoryData>();
+            CreateMap<ProjectInStoryData, StoryData>();
             CreateMap<StoryCreateDto, Story>();
             CreateMap<Story, StoryCreateDto>();
             CreateMap<Story, StoryInBusinessRuleData>();
