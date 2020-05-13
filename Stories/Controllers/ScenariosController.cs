@@ -8,7 +8,12 @@ using Stories.Models;
 
 namespace Stories.Controllers
 {
-    public class ScenariosController : AController<Scenario, ScenarioData, ScenarioCreateDto, ScenarioCreateDto>
+    public class ScenariosController : AController<
+        Scenario,
+        ScenarioData,
+        ScenarioData,
+        ScenarioCreateDto,
+        ScenarioCreateDto>
     {
         public ScenariosController(IRepository<Scenario> repository, IMapper mapper) : base(repository, mapper)
         {

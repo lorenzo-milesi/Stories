@@ -18,7 +18,7 @@ namespace Stories.Data
 
         public new Story Find(int id)
         {
-            return Table.Include(s => s.Project).FirstOrDefault(s => s.Id == id);
+            return Table.Include(s => s.Project).Include(s => s.BusinessRules).FirstOrDefault(s => s.Id == id);
         }
     }
 }

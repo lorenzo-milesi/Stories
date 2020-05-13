@@ -9,7 +9,12 @@ using Stories.Models;
 
 namespace Stories.Controllers
 {
-    public class StoriesController : AController<Story, StoryData, StoryCreateDto, StoryCreateDto>
+    public class StoriesController : AController<
+        Story,
+        StoryData,
+        StoryIndexData,
+        StoryCreateDto,
+        StoryCreateDto>
     {
         public StoriesController(IRepository<Story> repository, IMapper mapper) : base(repository, mapper)
         {

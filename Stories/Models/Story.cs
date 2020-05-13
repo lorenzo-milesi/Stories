@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Stories.Models
 {
@@ -10,5 +11,6 @@ namespace Stories.Models
         public string Data { get; set; }
         public Project Project { get; set; }
         public int ProjectId { get; set; }
+        public IEnumerable<BusinessRule> BusinessRules { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Stories.Controllers
     public class BusinessRulesController : AController<
         BusinessRule,
         BusinessRuleData,
+        BusinessRuleData,
         BusinessRuleCreateDto,
         BusinessRuleCreateDto>
     {

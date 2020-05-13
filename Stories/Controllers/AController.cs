@@ -10,7 +10,7 @@ namespace Stories.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class AController<TModel, TData, TCreate, TUpdate> : ControllerBase
+    public abstract class AController<TModel, TData, TIndexData, TCreate, TUpdate> : ControllerBase
         where TModel : class
         where TData : IModelData
         where TCreate : class, new()
@@ -33,7 +33,7 @@ namespace Stories.Controllers
 
             int count = Repository.Count();
             IndexMeta meta = new IndexMeta { Page = page, Limit = limit, Count = count, Resource = Resource };
-            IEnumerable<TData> data = Mapper.Map<IEnumerable<TData>>(projectsCollection);
+            IEnumerable<TIndexData> data = Mapper.Map<IEnumerable<TIndexData>>(projectsCollection);
             IndexDto dto = new IndexDto(data, meta);
 
             return Ok(dto);

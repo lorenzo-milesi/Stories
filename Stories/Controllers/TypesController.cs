@@ -8,7 +8,12 @@ using Stories.Models;
 
 namespace Stories.Controllers
 {
-    public class TypesController : AController<Type, TypeData, TypeCreateDto, TypeCreateDto>
+    public class TypesController : AController<
+        Type,
+        TypeData,
+        TypeData,
+        TypeCreateDto,
+        TypeCreateDto>
     {
         public TypesController(IRepository<Type> repository, IMapper mapper) : base(repository, mapper)
         {

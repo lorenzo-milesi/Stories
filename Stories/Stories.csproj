@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Dtos\Relationships" />
       <Folder Include="Migrations" />
     </ItemGroup>
 

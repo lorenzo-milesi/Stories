@@ -8,7 +8,12 @@ using Stories.Models;
 
 namespace Stories.Controllers
 {
-    public class StatesController : AController<State, StateData, StateCreateDto, StateCreateDto>
+    public class StatesController : AController<
+        State,
+        StateData,
+        StateData,
+        StateCreateDto,
+        StateCreateDto>
     {
         public StatesController(IRepository<State> repository, IMapper mapper) : base(repository, mapper)
         {
