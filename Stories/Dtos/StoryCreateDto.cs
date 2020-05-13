@@ -17,5 +17,8 @@ namespace Stories.Dtos
 
         [Required]
         public int TypeId { get; set; }
+
+        [Required]
+        public int StateId { get; set; }
     }
 }
