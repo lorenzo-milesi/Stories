@@ -9,6 +9,9 @@ namespace Stories.Dtos
         [MaxLength(250)]
         public string Title { get; set; }
 
+        public string Description { get; set; }
+        public string Data { get; set; }
+
         [Required]
         public int ProjectId { get; set; }
     }
