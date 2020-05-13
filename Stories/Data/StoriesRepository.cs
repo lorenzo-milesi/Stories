@@ -13,12 +13,16 @@ namespace Stories.Data
 
         public new IEnumerable<Story> Index(int offset, int limit)
         {
-            return Table.Include(s => s.Project).Skip(offset).Take(limit).ToList();
+            return Table.Include(s => s.Project).Include(s => s.Type).Skip(offset).Take(limit).ToList();
         }
 
         public new Story Find(int id)
         {
-            return Table.Include(s => s.Project).Include(s => s.BusinessRules).FirstOrDefault(s => s.Id == id);
+            return Table
+                .Include(s => s.Project)
+                .Include(s => s.Type)
+                .Include(s => s.BusinessRules)
+                .FirstOrDefault(s => s.Id == id);
         }
     }
 }

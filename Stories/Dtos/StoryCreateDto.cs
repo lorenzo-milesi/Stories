@@ -14,5 +14,8 @@ namespace Stories.Dtos
 
         [Required]
         public int ProjectId { get; set; }
+
+        [Required]
+        public int TypeId { get; set; }
     }
 }
