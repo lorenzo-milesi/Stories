@@ -10,6 +10,7 @@ namespace Stories.Data
         public DbSet<Type> Types { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<BusinessRule> BusinessRules { get; set; }
+        public DbSet<Scenario> Scenarios { get; set; }
 
         public StoriesContext(DbContextOptions<StoriesContext> options) : base(options)
         {
