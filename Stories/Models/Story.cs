@@ -12,6 +12,8 @@ namespace Stories.Models
         public int ProjectId { get; set; }
         public Type Type { get; set; }
         public int TypeId { get; set; }
+        public State State { get; set; }
+        public int StateId { get; set; }
         public IEnumerable<BusinessRule> BusinessRules { get; set; }
     }
 }
