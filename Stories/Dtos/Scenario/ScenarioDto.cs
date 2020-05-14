@@ -1,6 +1,6 @@
-﻿namespace Stories.Meta
+﻿namespace Stories.Dtos.Scenario
 {
-    public class ScenarioData : IModelData
+    public class ScenarioDto
     {
         public int Id { get; set; }
         public string Description { get; set; }

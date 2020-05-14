@@ -10,11 +10,10 @@ namespace Stories.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public abstract class AController<TModel, TData, TIndexData, TCreate, TUpdate> : ControllerBase
+    public abstract class AController<TModel, TDto, TIndexDto, TInsertDto> : ControllerBase
         where TModel : class
-        where TData : IModelData
-        where TCreate : class, new()
-        where TUpdate : class
+        where TDto : class
+        where TInsertDto : class
     {
         protected readonly IRepository<TModel> Repository;
         protected readonly IMapper Mapper;
@@ -26,20 +25,20 @@ namespace Stories.Controllers
             Mapper = mapper;
         }
 
-        protected ActionResult<IndexDto> Index(int page = 1, int limit = 100)
+        protected ActionResult<IndexDto<TIndexDto>> Index(int page = 1, int limit = 100)
         {
             int offset = (page - 1) * limit;
             IEnumerable<TModel> projectsCollection = Repository.Index(offset, limit);
 
             int count = Repository.Count();
             IndexMeta meta = new IndexMeta { Page = page, Limit = limit, Count = count, Resource = Resource };
-            IEnumerable<TIndexData> data = Mapper.Map<IEnumerable<TIndexData>>(projectsCollection);
-            IndexDto dto = new IndexDto(data, meta);
+            IEnumerable<TIndexDto> data = Mapper.Map<IEnumerable<TIndexDto>>(projectsCollection);
+            IndexDto<TIndexDto> dto = new IndexDto<TIndexDto>(data, meta);
 
             return Ok(dto);
         }
 
-        protected ActionResult<ShowDto> Show(int id)
+        protected ActionResult<TDto> Show(int id)
         {
             TModel model = Repository.Find(id);
 
@@ -48,12 +47,10 @@ namespace Stories.Controllers
                 return NotFound();
             }
 
-            TData data = Mapper.Map<TData>(model);
-
-            return Ok(new ShowDto(data));
+            return Ok(Mapper.Map<TDto>(model));
         }
 
-        protected TModel Create(TCreate createDto)
+        protected TModel Create(TInsertDto createDto)
         {
             TModel model = Mapper.Map<TModel>(createDto);
             Repository.Insert(model);
@@ -62,7 +59,7 @@ namespace Stories.Controllers
             return model;
         }
 
-        protected ActionResult Update(int id, TUpdate updateDto)
+        protected ActionResult Update(int id, TInsertDto updateDto)
         {
             TModel model = Repository.Find(id);
 
@@ -78,7 +75,7 @@ namespace Stories.Controllers
             return NoContent();
         }
 
-        protected ActionResult Patch(int id, JsonPatchDocument<TUpdate> document)
+        protected ActionResult Patch(int id, JsonPatchDocument<TInsertDto> document)
         {
             TModel model = Repository.Find(id);
 
@@ -87,7 +84,7 @@ namespace Stories.Controllers
                 return NotFound();
             }
 
-            TUpdate modelToPatch = Mapper.Map<TUpdate>(model);
+            TInsertDto modelToPatch = Mapper.Map<TInsertDto>(model);
             document.ApplyTo(modelToPatch, ModelState);
             if (!TryValidateModel(modelToPatch))
             {

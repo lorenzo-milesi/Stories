@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Stories.Dtos;
+using Stories.Dtos.BusinessRule;
 using Stories.Meta;
-using Stories.Meta.Relationships;
 using Stories.Models;
 
 namespace Stories.Profiles
@@ -10,11 +9,10 @@ namespace Stories.Profiles
     {
         public BusinessRulesProfile()
         {
-            CreateMap<BusinessRule, BusinessRuleData>();
-            CreateMap<BusinessRuleCreateDto, BusinessRule>();
-            CreateMap<BusinessRule, BusinessRuleCreateDto>();
-            CreateMap<StoryInBusinessRuleData, BusinessRuleData>();
-            CreateMap<BusinessRule, BusinessRulesInStoryData>();
+            CreateMap<BusinessRule, BusinessRuleDto>();
+            CreateMap<InsertBusinessRuleDto, BusinessRule>();
+            CreateMap<BusinessRule, InsertBusinessRuleDto>();
+            CreateMap<BusinessRule, IndexBusinessRuleDto>();
         }
     }
 }

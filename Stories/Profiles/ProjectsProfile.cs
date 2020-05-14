@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper;
-using Stories.Dtos;
-using Stories.Meta;
-using Stories.Meta.Relationships;
+using Stories.Dtos.Project;
 using Stories.Models;
 
 namespace Stories.Profiles
@@ -11,14 +9,13 @@ namespace Stories.Profiles
     {
         public ProjectsProfile()
         {
-            CreateMap<Project, ProjectData>().ForMember(
+            CreateMap<Project, ProjectDto>().ForMember(
                 dest => dest.StoriesCount,
                 opt => opt.MapFrom(source => source.Stories.Count())
             );
-            CreateMap<ProjectCreateDto, Project>();
-            CreateMap<ProjectUpdateDto, Project>();
-            CreateMap<Project, ProjectUpdateDto>();
-            CreateMap<Project, ProjectInStoryData>();
+            CreateMap<InsertProjectDto, Project>();
+            CreateMap<Project, InsertProjectDto>();
+            CreateMap<Project, ProjectDto>();
         }
     }
 }

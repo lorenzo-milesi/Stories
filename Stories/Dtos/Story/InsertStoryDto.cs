@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stories.Dtos
+namespace Stories.Dtos.Story
 {
-    public class StoryCreateDto
+    public class InsertStoryDto
     {
         [Required]
         [MinLength(3)]

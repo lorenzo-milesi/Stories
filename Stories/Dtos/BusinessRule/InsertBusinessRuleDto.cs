@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stories.Dtos
+namespace Stories.Dtos.BusinessRule
 {
-    public class BusinessRuleCreateDto
+    public class InsertBusinessRuleDto
     {
         [Required]
         public string Description { get; set; }

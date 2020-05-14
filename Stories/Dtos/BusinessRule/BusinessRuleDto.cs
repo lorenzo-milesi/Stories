@@ -1,6 +1,6 @@
-﻿namespace Stories.Meta.Relationships
+﻿namespace Stories.Dtos.BusinessRule
 {
-    public class BusinessRulesInStoryData
+    public class BusinessRuleDto
     {
         public int Id { get; set; }
         public string Description { get; set; }

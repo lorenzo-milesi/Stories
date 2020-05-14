@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stories.Dtos
+namespace Stories.Dtos.Scenario
 {
-    public class ScenarioCreateDto
+    public class InsertScenarioDto
     {
         [Required]
         public string Description { get; set; }

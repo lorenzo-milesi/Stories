@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Stories.Dtos
+namespace Stories.Dtos.Project
 {
-    public class StateCreateDto
+    public class InsertProjectDto
     {
         [Required]
         [MinLength(3)]
         [MaxLength(250)]
-        public string Title { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Stories.Data;
 using Stories.Dtos;
+using Stories.Dtos.State;
 using Stories.Meta;
 using Stories.Models;
 
@@ -10,10 +11,9 @@ namespace Stories.Controllers
 {
     public class StatesController : AController<
         State,
-        StateData,
-        StateData,
-        StateCreateDto,
-        StateCreateDto>
+        StateDto,
+        StateDto,
+        InsertStateDto>
     {
         public StatesController(IRepository<State> repository, IMapper mapper) : base(repository, mapper)
         {
@@ -21,35 +21,36 @@ namespace Stories.Controllers
         }
 
         [HttpGet]
-        public new ActionResult<IndexDto> Index(int page = 1, int limit = 100)
+        public new ActionResult<IndexDto<StateDto>> Index(int page = 1, int limit = 100)
         {
             return base.Index(page, limit);
         }
 
         [HttpGet("{id}", Name = "ShowState")]
-        [ProducesResponseType(typeof(ShowDto), 200)]
+        [ProducesResponseType(typeof(StateDto), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public new ActionResult<ShowDto> Show(int id)
+        public new ActionResult<StateDto> Show(int id)
         {
             return base.Show(id);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(StateCreateDto), 201)]
-        public new ActionResult Create(StateCreateDto createDto)
+        [ProducesResponseType(typeof(InsertStateDto), 201)]
+        public new ActionResult Create(InsertStateDto dto)
         {
-            State model = base.Create(createDto);
+            State model = base.Create(dto);
 
             return CreatedAtRoute(
                 "ShowType",
                 new { Id = model.Id },
-                new ShowDto(Mapper.Map<StateData>(model)));
+                Mapper.Map<StateDto>(model)
+            );
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(NoContentResult), 204)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public new ActionResult Update(int id, StateCreateDto updateDto)
+        public new ActionResult Update(int id, InsertStateDto updateDto)
         {
             return base.Update(id, updateDto);
         }
@@ -57,7 +58,7 @@ namespace Stories.Controllers
         [HttpPatch("{id}")]
         [ProducesResponseType(typeof(NoContentResult), 204)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public new ActionResult Patch(int id, JsonPatchDocument<StateCreateDto> document)
+        public new ActionResult Patch(int id, JsonPatchDocument<InsertStateDto> document)
         {
             return base.Patch(id, document);
         }

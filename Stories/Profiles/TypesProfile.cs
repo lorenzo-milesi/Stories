@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Stories.Dtos;
+using Stories.Dtos.Type;
 using Stories.Meta;
 using Stories.Models;
 
@@ -9,10 +10,10 @@ namespace Stories.Profiles
     {
         public TypesProfile()
         {
-            CreateMap<Type, TypeData>();
-            CreateMap<TypeCreateDto, Type>();
-            CreateMap<TypeCreateDto, Type>();
-            CreateMap<Type, TypeCreateDto>();
+            CreateMap<Type, TypeDto>();
+            CreateMap<InsertTypeDto, Type>();
+            CreateMap<InsertTypeDto, Type>();
+            CreateMap<Type, InsertTypeDto>();
         }
     }
 }

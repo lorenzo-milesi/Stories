@@ -4,12 +4,12 @@ using Stories.Meta;
 
 namespace Stories.Dtos
 {
-    public class IndexDto
+    public class IndexDto<TDto>
     {
-        public IEnumerable Data { get; }
+        public IEnumerable<TDto> Data { get; }
         public IndexMeta Meta { get; }
 
-        public IndexDto(IEnumerable data, IndexMeta meta)
+        public IndexDto(IEnumerable<TDto> data, IndexMeta meta)
         {
             Data = data;
             Meta = meta;

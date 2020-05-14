@@ -1,6 +1,6 @@
-﻿namespace Stories.Meta.Relationships
+﻿namespace Stories.Dtos.Project
 {
-    public class ProjectInStoryData
+    public class ProjectDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Stories.Dtos;
+using Stories.Dtos.State;
 using Stories.Meta;
 using Stories.Models;
 
@@ -9,10 +10,10 @@ namespace Stories.Profiles
     {
         public StatesProfile()
         {
-            CreateMap<State, StateData>();
-            CreateMap<StateCreateDto, State>();
-            CreateMap<StateCreateDto, State>();
-            CreateMap<State, StateCreateDto>();
+            CreateMap<State, StateDto>();
+            CreateMap<InsertStateDto, State>();
+            CreateMap<InsertStateDto, State>();
+            CreateMap<State, InsertStateDto>();
         }
     }
 }
