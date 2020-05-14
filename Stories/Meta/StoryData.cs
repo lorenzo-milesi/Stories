@@ -14,5 +14,6 @@ namespace Stories.Meta
         public Type Type { get; set; }
         public State State { get; set; }
         public IEnumerable<BusinessRulesInStoryData> BusinessRules { get; set; }
+        public IEnumerable<ScenarioData> Scenarios { get; set; }
     }
 }

@@ -27,6 +27,7 @@ namespace Stories.Data
                 .Include(s => s.Type)
                 .Include(s => s.State)
                 .Include(s => s.BusinessRules)
+                .Include(s => s.Scenarios)
                 .FirstOrDefault(s => s.Id == id);
         }
     }

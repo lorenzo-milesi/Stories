@@ -6,5 +6,8 @@ namespace Stories.Dtos
     {
         [Required]
         public string Description { get; set; }
+
+        [Required]
+        public int StoryId { get; set; }
     }
 }
