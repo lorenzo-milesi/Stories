@@ -13,6 +13,10 @@ namespace Stories.Profiles
                 dest => dest.StoriesCount,
                 opt => opt.MapFrom(source => source.Stories.Count())
             );
+            CreateMap<Project, ProjectWithStoriesDto>().ForMember(
+                dest => dest.StoriesCount,
+                opt => opt.MapFrom(source => source.Stories.Count())
+            );
             CreateMap<InsertProjectDto, Project>();
             CreateMap<Project, InsertProjectDto>();
             CreateMap<Project, ProjectDto>();

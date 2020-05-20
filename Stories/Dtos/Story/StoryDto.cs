@@ -2,6 +2,8 @@
 using Stories.Dtos.BusinessRule;
 using Stories.Dtos.Project;
 using Stories.Dtos.Scenario;
+using Stories.Dtos.State;
+using Stories.Dtos.Type;
 
 namespace Stories.Dtos.Story
 {
@@ -12,8 +14,8 @@ namespace Stories.Dtos.Story
         public string Description { get; set; }
         public string Data { get; set; }
         public ProjectDto Project { get; set; }
-        public Models.Type Type { get; set; }
-        public Models.State State { get; set; }
+        public TypeDto Type { get; set; }
+        public StateDto State { get; set; }
         public IEnumerable<IndexBusinessRuleDto> BusinessRules { get; set; }
         public IEnumerable<ScenarioDto> Scenarios { get; set; }
     }

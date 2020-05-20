@@ -12,7 +12,7 @@ namespace Stories.Controllers
 {
     public class ProjectsController : AController<
         Project,
-        ProjectDto,
+        ProjectWithStoriesDto,
         ProjectDto,
         InsertProjectDto>
     {
@@ -28,9 +28,9 @@ namespace Stories.Controllers
         }
 
         [HttpGet("{id}", Name = "ShowProject")]
-        [ProducesResponseType(typeof(ProjectDto), 200)]
+        [ProducesResponseType(typeof(ProjectWithStoriesDto), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public new ActionResult<ProjectDto> Show(int id)
+        public new ActionResult<ProjectWithStoriesDto> Show(int id)
         {
             return base.Show(id);
         }
